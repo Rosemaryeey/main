@@ -1,37 +1,45 @@
 import "./App.css";
-// import sun from "./assets/sun.jpg"
-import Header from "./header.jsx";
-import Footer from "./footer.jsx";
-import Button from "./components/Button.jsx";
-// import Increment from "./components/Increment.jsx";
-import Homework from "./components/Bulb.jsx"
+import { Routes, Route } from "react-router-dom";
+import Main from "./components/main";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Signup from "./pages/signup";
+import Login from "./components/login";
+import Dropdown from "./components/dropdown";
+import NotFound from "./pages/NotFound";
+// PRODUCTS
+import Product from "./pages/products/products";
+import Shoes from "./pages/products/shoes";
+import Electronics from "./pages/products/electronics";
+import Bag from "./pages/products/bag";
+import Clothes from "./pages/products/clothes";
+import Jewelries from "./pages/products/jewelries";
 
 function App() {
-  const text = "welcome to my first React app";
-
   return (
-    // react fragment
     <>
-      <main className="bg-gray-700">
-        <Header />
-        <section className="h-[70vh] flex justify-center items-center gap-3 flex-col text-white">
-          <h1 className="text-[55px] font-mono font-bold">{text}</h1>
-          {/* <img src={sun} alt="img" width={500} height={300}  /> */}
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Main />}>
+          <Route path="/dropdown" element={<Dropdown />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
 
-          <section className="flex gap-3">
-            <Button bg={"bg-blue-500"} name={"Get started"} />
-            <Button
-              bg={"bg-[whitesmoke] text-black"}
-              name={"See Documentation"}
-            />
-          </section>
-          <Homework/>
-
-          {/* <Increment /> */}
-        </section>
-        <Footer />
-      </main>
+          <Route path="/products" element={<Product />}>
+            <Route path="/products/shoes" element={<Shoes />} />
+            <Route path="/products/electronics" element={<Electronics />} />
+            <Route path="/products/bag" element={<Bag />} />
+            <Route path="/products/clothes" element={<Clothes />} />
+            <Route path="/products/jewelries" element={<Jewelries />} />
+          </Route>
+        </Route>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
+
 export default App;
