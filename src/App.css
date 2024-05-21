@@ -1,3 +1,11 @@
 a.active{
     border-bottom: 2px solid blue;
 }
+figure::-webkit-scrollbar{
+display: none;
+}
+
+figure{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

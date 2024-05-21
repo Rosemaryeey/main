@@ -2,12 +2,24 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function scrollheader() {
-  const [Scrollheader, setScrollheader] = useState("");
+  const [scrollheader, setScrollheader] = useState("static");
   useEffect(() => {
-    console.log(window.scrolly);
+    const scrollfunc = () => {
+      const scroll = window.scrollY;
+      scroll > 200 ? setScrollheader("fixed") : setScrollheader("static");
+    };
+
+    window.addEventListener("scroll", scrollfunc);
+
+    return () => window.removeEventListener("scroll", scrollfunc);
   });
+
   return (
-    <header className="flex items-center justify-center bg-slate-500">
+    <header
+      className={` h-[10vh] transition duration-500 w-screen
+     flex items-center static justify-center bg-slate-500
+    ${scrollheader}`}
+    >
       scrollheader
     </header>
   );
